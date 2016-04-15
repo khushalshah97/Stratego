@@ -10,5 +10,7 @@ package stratego;
  * @author shah1762
  */
 public class NewClass {
-    
+    public NewClass(){
+        
+    }
 }
