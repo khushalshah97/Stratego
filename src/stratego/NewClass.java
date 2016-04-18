@@ -12,5 +12,6 @@ package stratego;
 public class NewClass {
     public NewClass(){
         System.out.println("khushal");
+        System.out.println("crep");
     }
 }
