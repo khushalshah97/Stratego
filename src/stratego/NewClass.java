@@ -12,5 +12,7 @@ package stratego;
 public class NewClass {
     public NewClass(){
         System.out.println("meh");
+        System.out.println("asdifbadsdsfads");
+        System.out.println("we are dumb");
     }
 }
