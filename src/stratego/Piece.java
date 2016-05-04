@@ -12,15 +12,18 @@ package stratego;
 public class Piece {   
     private int owner;
     private int value;
+    private boolean isFlag=false;
     
     public Piece(){
-        value=0;
+        value=-1;
         owner=-1;
     }
     
     public Piece(int num, int player){//constructor sends the player's number and the value of the piece 
+        if(num==0)
+            isFlag=true;
         value=num;
-        owner=player;
+        owner=player;        
         
     }        
             
@@ -38,7 +41,7 @@ public class Piece {
     }
     
     public String getPath(){
-        
+        return "resources/"+ Integer.toString(value)+".jpg";
     }
     
 }
