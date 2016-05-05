@@ -12,7 +12,6 @@ package stratego;
 public class Stratego {
     Piece[][] board = new Piece[10][10];
     public Stratego(){
-        System.out.println("khushal");
-        System.out.println("crepe");
+        
     }
 }
