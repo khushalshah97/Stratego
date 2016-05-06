@@ -14,4 +14,7 @@ public class Stratego {
     public Stratego(){
         
     }
+    public Piece getPiece(int i, int j){
+        return board[i][j];
+    }
 }

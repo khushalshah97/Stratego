@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
@@ -30,10 +31,24 @@ public class FXMLDocumentController implements Initializable {
     ImageView[][] pieces=new ImageView[10][10];
     
     
+    
+    
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        
-        
+        for(int i=0;i<10;i++){
+            for(int j=0;j<10;j++){
+                pieces[i][j]=new ImageView();
+                gpane.add(pieces[i][j],j,i);
+            }
+        }        
+    }
+    
+    private void setImages(){
+        for(int i=0;i<10;i++){
+            for(int j=0;j<10;j++){
+                pieces[i][j].setImage(new Image(game.getPiece(i,j).getPath()));
+            }
+        }
     }
     
     @Override
