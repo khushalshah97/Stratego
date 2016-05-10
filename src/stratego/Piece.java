@@ -14,10 +14,6 @@ public class Piece {
     private int value;
     private boolean isFlag=false;
     
-    public Piece(){
-        value=-1;
-        owner=-1;
-    }
     
     public Piece(int num, int player){//constructor sends the player's number and the value of the piece 
         if(num==0)
@@ -42,8 +38,7 @@ public class Piece {
     
     public String getPath(){
         if(isFlag)
-            return 
-                    "resources/flag"+owner+".png";
+            return "resources/flag"+owner+".png";
         return "resources/"+ Integer.toString(value)+".jpg";
     }
     

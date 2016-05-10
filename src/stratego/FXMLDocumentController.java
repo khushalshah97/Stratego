@@ -41,6 +41,7 @@ public class FXMLDocumentController implements Initializable {
                 gpane.add(pieces[i][j],j,i);
             }
         }        
+        setImages();
     }
     
     private void setImages(){
