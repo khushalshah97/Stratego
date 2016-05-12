@@ -5,6 +5,8 @@
  */
 package stratego;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,8 +22,8 @@ public class StrategoGame extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
-        Scene scene = new Scene(root);
+        Dimension x =Toolkit.getDefaultToolkit().getScreenSize();
+        Scene scene = new Scene(root,x.width,x.height);
         
         stage.setScene(scene);
         stage.show();
