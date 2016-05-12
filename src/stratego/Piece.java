@@ -39,7 +39,7 @@ public class Piece {
     public String getPath(){
         if(isFlag)
             return "resources/flag"+owner+".png";
-        return "resources/"+ Integer.toString(value)+".jpg";
+        return "resources/"+Integer.toString(value)+".jpg";
     }
     
 }

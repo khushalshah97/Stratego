@@ -14,7 +14,7 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     public Stratego(){
         int quantity=0;
         int value=0;
-        int player=2;
+        int player=1;
         
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
@@ -34,7 +34,7 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
                         break;
                     case 60:
                         value=0;
-                        player=1;
+                        player=0;
                         break;
                     
                 }

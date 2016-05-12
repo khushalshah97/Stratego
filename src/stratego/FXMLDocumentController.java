@@ -38,10 +38,14 @@ public class FXMLDocumentController implements Initializable {
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
                 pieces[i][j]=new ImageView();
+                pieces[i][j].setFitHeight(50);
+                pieces[i][j].setFitWidth(j);
                 gpane.add(pieces[i][j],j,i);
             }
         }        
         setImages();
+        gpane.setGridLinesVisible(true);
+        gpane.setVisible(true);
     }
     
     private void setImages(){
