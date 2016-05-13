@@ -34,14 +34,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleStart(ActionEvent event) {
         game=new Stratego();
+        
         gpane.setGridLinesVisible(false);
         gpane.setVisible(false);
         
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
                 pieces[i][j]=new ImageView();
-                pieces[i][j].setFitHeight(50);
-                pieces[i][j].setFitWidth(50);
+                pieces[i][j].setFitHeight(75);
+                pieces[i][j].setFitWidth(75);
                 gpane.add(pieces[i][j],j,i);
             }
         }        
@@ -60,7 +61,11 @@ public class FXMLDocumentController implements Initializable {
                 System.out.println("Column: " +column);
                 int row=GridPane.getRowIndex(((ImageView) t.getSource()));
                 System.out.println("Row: " + row);
-                    
+                pieces[row][column].setFitHeight(50);
+                pieces[row][column].setFitWidth(50);
+                game.setSelected(row, column);
+                game.setMove(row, column);
+                
             }    
         };
             for(int i=0; i<pieces.length; i++){

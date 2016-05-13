@@ -10,8 +10,9 @@ package stratego;
  * @author shah1762
  */
 public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 2, 1 1, 1 0; 8 lakes; 12 open  .
-    Piece[][] board = new Piece[10][10];
+    private Piece[][] board = new Piece[10][10];
     private String selected;
+    private int pTurn;
     
     public Stratego(){
         int quantity=0;
@@ -43,10 +44,13 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
             }
         }        
     }
-    
-    public void setSelected(int row, int column) {
-        selected = Integer.toString(row) + Integer.toString(column);
+    public void move(int row, int column) {
+        if (board[row][column].getOwner() == pTurn){
+            selected = Integer.toString(row) + Integer.toString(column);
+        }    
+        if(selected!=null)
     }
+    public void move
     public Piece getPiece(int i, int j){
         return board[i][j];
     }
