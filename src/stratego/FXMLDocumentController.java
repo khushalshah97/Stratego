@@ -60,6 +60,7 @@ public class FXMLDocumentController implements Initializable {
                 System.out.println("Column: " +column);
                 int row=GridPane.getRowIndex(((ImageView) t.getSource()));
                 System.out.println("Row: " + row);
+                    
             }    
         };
             for(int i=0; i<pieces.length; i++){
@@ -68,7 +69,6 @@ public class FXMLDocumentController implements Initializable {
                 }
         }
     }
-    
     
     
     
@@ -81,8 +81,8 @@ public class FXMLDocumentController implements Initializable {
     }
     
     Stratego game;
-    ImageView[][] pieces=new ImageView[10][10];
-    
+    private boolean isSelected=false;
+    ImageView[][] pieces=new ImageView[10][10];   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
