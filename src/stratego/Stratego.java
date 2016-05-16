@@ -45,12 +45,10 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         }        
     }
     public void move(int row, int column) {
-        if (board[row][column].getOwner() == pTurn){
+        if (board[row][column].getOwner() == pTurn || selected != null){
             selected = Integer.toString(row) + Integer.toString(column);
         }    
-        if(selected!=null)
     }
-    public void move
     public Piece getPiece(int i, int j){
         return board[i][j];
     }
