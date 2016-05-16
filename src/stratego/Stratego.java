@@ -21,7 +21,7 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
-                board[i][j]=new Piece(value,player);
+                board[i][j]=new Piece(value,player,i,j);
                 quantity++;
                 switch(quantity){                    
                     case 1: case 2: case 10: case 15: case 19: case 23: case 27: case 30: case 32: case 33: case 34:
@@ -44,12 +44,24 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
             }
         }        
     }
-    public void move(int row, int column) {
-        if (board[row][column].getOwner() == pTurn || selected != null){
-            selected = Integer.toString(row) + Integer.toString(column);
-        }    
+    public void move(int row, int col) {
+        if (board[row][col].getOwner() == pTurn || selected != null){
+            selected = Integer.toString(row) + Integer.toString(col);
+        }   
+        else if (isAdjacentToSelected(row, col)) {
+            
+        }
     }
     public Piece getPiece(int i, int j){
         return board[i][j];
+    }
+    public boolean isAdjacentToSelected(int row, int col) {
+        int selRow = Integer.parseInt(selected.substring(0,1));
+        int selCol = Integer.parseInt(selected.substring(1));
+        return (selRow == row && (selCol == col - 1 || selCol == col + 1)) || (selCol == col && (selRow == row - 1 || selRow == row + 1));
+    }
+    public Piece scrimmage(int row, int col) {
+        int defVal = board[row][col].getValue();
+        int attVal = 
     }
 }
