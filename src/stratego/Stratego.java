@@ -13,7 +13,7 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     private Piece[][] board = new Piece[10][10];
     private Piece selected;
     private int selRow, selCol;
-    private int pTurn;
+    private int pTurn=0;
     
     public Stratego() {
         int quantity=0;
@@ -46,13 +46,16 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         }        
     }
     public void move(int row, int col) {
-        if (board[row][col].getOwner() == pTurn || selected != null){
+        if (board[row][col].getOwner() == pTurn || selected == null){
             selected = board[row][col];
             selRow = row;
             selCol = col;
+            System.out.println(row+" "+col);
         }   
-        else if (isAdjacentToSelected(row, col)) {
-            
+        else if (isAdjacentToSelected(row, col) && board[row][col].getValue() != -2) {
+            System.out.println("true");
+            scrimmage(row, col);
+            changeTurn();
         }
     }
     public Piece getPiece(int i, int j){
@@ -66,25 +69,27 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         Piece def = board[row][col];
         int defVal = def.getValue();
         int attVal = selected.getValue();
-        if (attVal == 1) {
+        if (attVal == 1) 
             if (defVal == 10)
                 winner = selected;
-        }
-        else if (attVal == 3) {
+        else if (attVal == 3) 
             if (defVal == 11)
-                winner = selected;
-        }
+                winner = selected;       
         else if (attVal > defVal)
             winner = selected;
         else if (defVal > attVal)
             winner = def;
-        if (winner == null) {
+        if (winner == null) 
             board[row][col].makeVoid();
-            board[selRow][selCol].makeVoid();
-        }
-        else {
+        else 
             board[row][col] = winner;
-            board[selRow][selCol].makeVoid();
-        }
+        board[selRow][selCol].makeVoid();
+        System.out.println("winner");
+    }
+    public void changeTurn() {
+        if (pTurn == 0)
+            pTurn = 1;
+        else 
+            pTurn = 0;
     }
 }

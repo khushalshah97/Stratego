@@ -60,9 +60,14 @@ public class FXMLDocumentController implements Initializable {
                 int column=GridPane.getColumnIndex(((ImageView) t.getSource()));
                 System.out.println("Column: " +column);
                 int row=GridPane.getRowIndex(((ImageView) t.getSource()));
-                System.out.println("Row: " + row);
+                System.out.println("Row: " + row);          
+                setImages();
                 pieces[row][column].setFitHeight(50);
                 pieces[row][column].setFitWidth(50);
+                game.move(row, column);
+                setImages();
+
+                
                 
             }    
         };
@@ -79,6 +84,8 @@ public class FXMLDocumentController implements Initializable {
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
                 pieces[i][j].setImage(new Image(game.getPiece(i,j).getPath()));
+                pieces[i][j].setFitHeight(75);
+                pieces[i][j].setFitWidth(75);
             }
         }
     }
