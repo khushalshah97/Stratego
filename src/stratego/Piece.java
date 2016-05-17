@@ -12,14 +12,16 @@ package stratego;
 public class Piece {   
     private int owner;
     private int value;
+    private String location;
     private boolean isFlag=false;
     
     
-    public Piece(int num, int player){//constructor sends the player's number and the value of the piece 
+    public Piece(int num, int player, int row, int column){//constructor sends the player's number and the value of the piece 
         if(num==0)
             isFlag=true;
         value=num;
-        owner=player;        
+        owner=player;       
+        location= Integer.toString(row)+Integer.toString(column);
         
     }        
             
@@ -32,8 +34,8 @@ public class Piece {
     }
     
     public void makeVoid(){
-        owner=-1;//maybe not necessary?
-        value=0;
+        owner= -1;//maybe not necessary?
+        value= -1;
     }
     
     public String getPath(){

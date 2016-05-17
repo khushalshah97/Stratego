@@ -63,8 +63,6 @@ public class FXMLDocumentController implements Initializable {
                 System.out.println("Row: " + row);
                 pieces[row][column].setFitHeight(50);
                 pieces[row][column].setFitWidth(50);
-                game.setSelected(row, column);
-                game.setMove(row, column);
                 
             }    
         };

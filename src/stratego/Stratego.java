@@ -11,10 +11,11 @@ package stratego;
  */
 public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 2, 1 1, 1 0; 8 lakes; 12 open  .
     private Piece[][] board = new Piece[10][10];
-    private String selected;
+    private Piece selected;
+    private int selRow, selCol;
     private int pTurn;
     
-    public Stratego(){
+    public Stratego() {
         int quantity=0;
         int value=0;
         int player=1;
@@ -46,7 +47,9 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     }
     public void move(int row, int col) {
         if (board[row][col].getOwner() == pTurn || selected != null){
-            selected = Integer.toString(row) + Integer.toString(col);
+            selected = board[row][col];
+            selRow = row;
+            selCol = col;
         }   
         else if (isAdjacentToSelected(row, col)) {
             
@@ -56,12 +59,32 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         return board[i][j];
     }
     public boolean isAdjacentToSelected(int row, int col) {
-        int selRow = Integer.parseInt(selected.substring(0,1));
-        int selCol = Integer.parseInt(selected.substring(1));
         return (selRow == row && (selCol == col - 1 || selCol == col + 1)) || (selCol == col && (selRow == row - 1 || selRow == row + 1));
     }
-    public Piece scrimmage(int row, int col) {
-        int defVal = board[row][col].getValue();
-        int attVal = 
+    public void scrimmage(int row, int col) {
+        Piece winner = null;
+        Piece def = board[row][col];
+        int defVal = def.getValue();
+        int attVal = selected.getValue();
+        if (attVal == 1) {
+            if (defVal == 10)
+                winner = selected;
+        }
+        else if (attVal == 3) {
+            if (defVal == 11)
+                winner = selected;
+        }
+        else if (attVal > defVal)
+            winner = selected;
+        else if (defVal > attVal)
+            winner = def;
+        if (winner == null) {
+            board[row][col].makeVoid();
+            board[selRow][selCol].makeVoid();
+        }
+        else {
+            board[row][col] = winner;
+            board[selRow][selCol].makeVoid();
+        }
     }
 }
