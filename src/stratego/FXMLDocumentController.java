@@ -52,7 +52,7 @@ public class FXMLDocumentController implements Initializable {
         
         
        
-    EventHandler z = new EventHandler<MouseEvent>() //when the mouse is clicked action event. HAND 1
+    EventHandler z = new EventHandler<MouseEvent>() 
         {            
             @Override
             public void handle(MouseEvent t) 
@@ -65,7 +65,7 @@ public class FXMLDocumentController implements Initializable {
                 pieces[row][column].setFitHeight(50);
                 pieces[row][column].setFitWidth(50);
                 game.move(row, column);
-                setImages();
+                //setImages();
 
                 
                 

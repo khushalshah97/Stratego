@@ -54,7 +54,11 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         }   
         else if (isAdjacentToSelected(row, col) && board[row][col].getValue() != -2) {
             System.out.println("true");
+            System.out.println(board[row][col].getValue());
             scrimmage(row, col);
+            System.out.println(board[row][col].getValue());
+            System.out.println(board[row][col].getOwner());
+            selected=null;
             changeTurn();
         }
     }
@@ -65,24 +69,48 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         return (selRow == row && (selCol == col - 1 || selCol == col + 1)) || (selCol == col && (selRow == row - 1 || selRow == row + 1));
     }
     public void scrimmage(int row, int col) {
-        Piece winner = null;
+        Piece winner = new Piece();
         Piece def = board[row][col];
         int defVal = def.getValue();
+        System.out.println(defVal);
         int attVal = selected.getValue();
-        if (attVal == 1) 
-            if (defVal == 10)
-                winner = selected;
-        else if (attVal == 3) 
-            if (defVal == 11)
-                winner = selected;       
-        else if (attVal > defVal)
-            winner = selected;
-        else if (defVal > attVal)
-            winner = def;
-        if (winner == null) 
+        System.out.println(attVal);
+        if (attVal == 1) {
+            System.out.println("#1");
+            if (defVal == 10) {
+                winner.copyPiece(selected);
+            }
+                //winner = new Piece(selected);
+        }
+        else if (attVal == 3) {
+            System.out.println("#2");
+            if (defVal == 11) {
+                winner.copyPiece(selected);
+            }
+                //winner = new Piece(selected);   
+        }
+        else if (attVal > defVal) {
+            
+//            winner.copyPiece(selected); 
+            winner = new Piece(selected);
+            System.out.println(board[row][col].getValue());
+            System.out.println(board[row][col].getOwner());
+            System.out.println("#3");
+        }            
+        else if (defVal > attVal) {
+            System.out.println("#4");
+            //winner = def;
+            winner.copyPiece(def);
+//        winner = new Piece(selected);
+        }
+        else
+            System.out.println("you suck");
+        if (winner.getValue()==0) 
             board[row][col].makeVoid();
-        else 
+        else {
             board[row][col] = winner;
+            System.out.println("you are the best");
+        }
         board[selRow][selCol].makeVoid();
         System.out.println("winner");
     }
