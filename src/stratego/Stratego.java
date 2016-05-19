@@ -46,7 +46,7 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         }        
     }
     public void move(int row, int col) {
-        if (board[row][col].getOwner() == pTurn || selected == null){
+        if (board[row][col].getOwner() == pTurn || selected==null){
             selected = board[row][col];
             selRow = row;
             selCol = col;
@@ -54,9 +54,9 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         }   
         else if (isAdjacentToSelected(row, col) && board[row][col].getValue() != -2) {
             System.out.println("true");
-            System.out.println(board[row][col].getValue());
+            System.out.println("pre: "+board[row][col].getValue());
             scrimmage(row, col);
-            System.out.println(board[row][col].getValue());
+            System.out.println("post: "+board[row][col].getValue());
             System.out.println(board[row][col].getOwner());
             selected=null;
             changeTurn();
@@ -72,9 +72,9 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         Piece winner = new Piece();
         Piece def = board[row][col];
         int defVal = def.getValue();
-        System.out.println(defVal);
+        System.out.println("def: "+defVal);
         int attVal = selected.getValue();
-        System.out.println(attVal);
+        System.out.println("att: "+attVal);
         if (attVal == 1) {
             System.out.println("#1");
             if (defVal == 10) {
@@ -93,8 +93,9 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
             
 //            winner.copyPiece(selected); 
             winner = new Piece(selected);
-            System.out.println(board[row][col].getValue());
+            System.out.println("board: "+(board[row][col].getValue()));
             System.out.println(board[row][col].getOwner());
+            System.out.println("winner: "+winner.getValue());
             System.out.println("#3");
         }            
         else if (defVal > attVal) {
