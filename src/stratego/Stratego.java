@@ -47,6 +47,8 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     }
     public void move(int row, int col) {
         if (board[row][col].getOwner() == pTurn || selected==null){
+            if(board[row][col].getValue()==0||board[row][col].getValue()==11)
+                return;
             selected = board[row][col];
             selRow = row;
             selCol = col;
@@ -91,8 +93,8 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         }
         else if (attVal > defVal) {
             
-//            winner.copyPiece(selected); 
-            winner = new Piece(selected);
+            winner.copyPiece(selected); 
+            //winner = new Piece(selected);
             System.out.println("board: "+(board[row][col].getValue()));
             System.out.println(board[row][col].getOwner());
             System.out.println("winner: "+winner.getValue());

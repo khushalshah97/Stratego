@@ -27,12 +27,12 @@ public class Piece {
     public Piece(){
         
     }
-    public Piece(Piece another) {
-        this.owner = another.owner;
-        this.value = another.value;
-        this.location = another.location;
-        this.isFlag = another.isFlag;
-    }      
+//    public Piece(Piece another) {
+//        this.owner = another.owner;
+//        this.value = another.value;
+//        this.location = another.location;
+//        this.isFlag = another.isFlag;
+//    }      
     public void copyPiece(Piece another){
         this.owner = another.owner;
         this.value = another.value;
