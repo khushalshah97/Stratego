@@ -25,7 +25,8 @@ public class Piece {
         
     }        
     public Piece(){
-        
+        owner = -1;
+        value = -1;
     }
 //    public Piece(Piece another) {
 //        this.owner = another.owner;
@@ -57,5 +58,12 @@ public class Piece {
             return "resources/flag"+owner+".png";
         return "resources/"+Integer.toString(value)+".jpg";
     }
-    
+    public Piece getBigger(Piece another) {
+        if (this.getValue() > another.getValue())
+            return this;
+        else if (this.getValue() < another.getValue())
+            return another;
+        else 
+            return new Piece();
+    }
 }
