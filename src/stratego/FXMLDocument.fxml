@@ -12,5 +12,6 @@
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <GridPane fx:id="gpane" layoutX="173.0" layoutY="137.0" prefHeight="501.0" prefWidth="617.0">
       </GridPane>
+      <Label fx:id="label" layoutX="117.0" layoutY="75.0" prefHeight="37.0" prefWidth="702.0" />
     </children>
 </AnchorPane>

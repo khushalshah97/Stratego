@@ -84,7 +84,7 @@ public class FXMLDocumentController implements Initializable {
     private void setImages(){
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
-                pieces[i][j].setImage(new Image(game.getPiece(i,j).getPath()));
+                pieces[i][j].setImage(new Image(game.getPiece(i,j).getPath(game.nextTurn())));
                 pieces[i][j].setFitHeight(75);
                 pieces[i][j].setFitWidth(75);
             }

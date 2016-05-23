@@ -12,6 +12,7 @@ package stratego;
 public class Piece {   
     private int owner;
     private int value;
+    private String[] colors={"waterNation", "fireNation"};
     private String location;
     private boolean isFlag=false;
     
@@ -53,7 +54,9 @@ public class Piece {
         value= -1;
     }
     
-    public String getPath(){
+    public String getPath(int nextTurn){
+        if(owner==nextTurn)
+            return "resources"+colors[owner]+".jpg";
         if(isFlag)
             return "resources/flag"+owner+".png";
         return "resources/"+Integer.toString(value)+".jpg";

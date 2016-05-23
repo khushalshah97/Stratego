@@ -56,7 +56,7 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         else if (isAdjacentToSelected(row, col) && board[row][col].getValue() != -2 && !((selected.getValue() == 0) || (selected.getValue() == 11))) {
             scrimmage(row, col);
             selected=null;
-            changeTurn();
+            pTurn=nextTurn();
         }
     }
     public Piece getPiece(int i, int j){
@@ -83,10 +83,13 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         board[row][col] = winner;
         board[selRow][selCol].makeVoid();
     }
-    public void changeTurn() {
+    public int nextTurn() {
         if (pTurn == 0)
-            pTurn = 1;
+            return 1;
         else 
-            pTurn = 0;
+            return 0;
+    }
+    public int getTurn(){
+        return pTurn;
     }
 }
