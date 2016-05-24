@@ -29,12 +29,12 @@ public class Piece {
         owner = -1;
         value = -1;
     }
-//    public Piece(Piece another) {
-//        this.owner = another.owner;
-//        this.value = another.value;
-//        this.location = another.location;
-//        this.isFlag = another.isFlag;
-//    }      
+    public Piece(Piece another) {
+        this.owner = another.owner;
+        this.value = another.value;
+        this.location = another.location;
+        this.isFlag = another.isFlag;
+    }      
     public void copyPiece(Piece another){
         this.owner = another.owner;
         this.value = another.value;
@@ -56,7 +56,7 @@ public class Piece {
     
     public String getPath(int nextTurn){
         if(owner==nextTurn)
-            return "resources"+colors[owner]+".jpg";
+            return "resources/"+colors[owner]+".jpg";
         if(isFlag)
             return "resources/flag"+owner+".png";
         return "resources/"+Integer.toString(value)+".jpg";

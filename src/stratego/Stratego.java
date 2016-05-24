@@ -13,7 +13,8 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     private Piece[][] board = new Piece[10][10];
     private Piece selected;
     private int selRow, selCol;
-    private int pTurn=0;
+    private int pTurn = 0;
+    private boolean isSetup = true;
     
     public Stratego() {
         int quantity=0;
@@ -47,13 +48,27 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     }
     public void move(int row, int col) {
         if (board[row][col].getOwner() == pTurn){
-            if(board[row][col].getValue()==0||board[row][col].getValue()==11)
+            if (isSetup && selected != null) {
+                if (row == selRow && col == selCol) {
+                    selected = null;
+                    return;
+                }
+                Piece temp = new Piece(selected);
+                board[selRow][selCol].copyPiece(board[row][col]);
+                board[row][col].copyPiece(temp);
+                selected = null;
                 return;
+            }
+            else if(board[row][col].getValue()==0||board[row][col].getValue()==11) {
+                if (!isSetup) {
+                    return;
+                }
+            }
             selected = board[row][col];
             selRow = row;
             selCol = col;
-        }   
-        else if (isAdjacentToSelected(row, col) && board[row][col].getValue() != -2 && !((selected.getValue() == 0) || (selected.getValue() == 11))) {
+        }
+        else if (selected != null && isAdjacentToSelected(row, col) && board[row][col].getValue() != -2 && !((selected.getValue() == 0) || (selected.getValue() == 11))) {
             scrimmage(row, col);
             selected=null;
             pTurn=nextTurn();
@@ -91,5 +106,17 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     }
     public int getTurn(){
         return pTurn;
+    }
+    public void changeTurn() {
+        if (pTurn == 0)
+            pTurn = 1;
+        else 
+            pTurn = 0;
+    }
+    public boolean getIsSetup() {
+        return isSetup;
+    }
+    public void changeIsSetup() {
+        isSetup = !isSetup;
     }
 }

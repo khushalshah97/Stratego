@@ -29,8 +29,20 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private GridPane gpane;
     @FXML
-    private Button buttonStart;
+    private Button buttonStart, buttonSetup;
     
+    @FXML
+    private void handleSetup(ActionEvent event) {
+        if (game.getIsSetup()) {
+            if (game.getTurn() == 0)
+                game.changeTurn();
+            else {
+                game.changeTurn();
+                game.changeIsSetup();
+            }
+            setImages();
+        }
+    }
     @FXML
     private void handleStart(ActionEvent event) {
         game=new Stratego();
