@@ -38,7 +38,7 @@ public class FXMLDocumentController implements Initializable {
                 game.changeTurn();
             else {
                 game.changeTurn();
-                game.changeIsSetup();
+                game.setIsSetup(false);
             }
             setImages();
         }
@@ -46,7 +46,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleStart(ActionEvent event) {
         game=new Stratego();
-        
+        game.setIsSetup(true);
         gpane.setGridLinesVisible(false);
         gpane.setVisible(false);
         

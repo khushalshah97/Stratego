@@ -13,17 +13,19 @@ public class Piece {
     private int owner;
     private int value;
     private String[] colors={"waterNation", "fireNation"};
+    private String[] elements={"water", "fire"};
     private String location;
+    private String element;
     private boolean isFlag=false;
     
     
-    public Piece(int num, int player, int row, int column){//constructor sends the player's number and the value of the piece 
+    public Piece(int num, int player, int element, int row, int column){//constructor sends the player's number and the value of the piece 
         if(num==0)
             isFlag=true;
         value=num;
         owner=player;       
         location= Integer.toString(row)+Integer.toString(column);
-        
+        this.element=elements[element];
     }        
     public Piece(){
         owner = -1;
@@ -49,6 +51,10 @@ public class Piece {
         return value;
     }
     
+    public String getElement(){
+        return element;
+    }
+    
     public void makeVoid(){
         owner= -1;//maybe not necessary?
         value= -1;
@@ -59,6 +65,8 @@ public class Piece {
             return "resources/"+colors[owner]+".jpg";
         if(isFlag)
             return "resources/flag"+owner+".png";
+        if(value==-2)
+            return "resources/"+element+".jpg";
         return "resources/"+Integer.toString(value)+".jpg";
     }
     public Piece getBigger(Piece another) {
