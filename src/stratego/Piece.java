@@ -32,16 +32,14 @@ public class Piece {
         value = -1;
     }
     public Piece(Piece another) {
-        this.owner = another.owner;
-        this.value = another.value;
-        this.location = another.location;
-        this.isFlag = another.isFlag;
+        copyPiece(another);
     }      
     public void copyPiece(Piece another){
         this.owner = another.owner;
         this.value = another.value;
         this.location = another.location;
         this.isFlag = another.isFlag;
+        this.element=another.element;
     }
     public int getOwner(){
         return owner;

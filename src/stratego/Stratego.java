@@ -15,6 +15,7 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     private int selRow, selCol;
     private int pTurn = 0;
     private boolean isSetup = true;
+    private boolean done=false;
     
     public Stratego() {
         int quantity=0;
@@ -53,33 +54,36 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
             }
         }        
     }
-    public void move(int row, int col) {
+    public String move(int row, int col) {
         if (board[row][col].getOwner() == pTurn){
             if (isSetup && selected != null) {
                 if (row == selRow && col == selCol) {
                     selected = null;
-                    return;
+                    return "Your piece is deselected ";
                 }
                 Piece temp = new Piece(selected);
                 board[selRow][selCol].copyPiece(board[row][col]);
                 board[row][col].copyPiece(temp);
                 selected = null;
-                return;
+                return "Setup Phase: swap succesful";
             }
             else if(board[row][col].getValue()==0||board[row][col].getValue()==11) {
                 if (!isSetup) {
-                    return;
+                    return "You can't move a bomb or a flag. Try again!";
                 }
             }
             selected = board[row][col];
             selRow = row;
             selCol = col;
+            return "Your piece has been selected, "+selected.getElement()+" nation";
         }
         else if (selected != null && isAdjacentToSelected(row, col) && board[row][col].getValue() != -2 && !((selected.getValue() == 0) || (selected.getValue() == 11))) {
-            scrimmage(row, col);
+            String x= scrimmage(row, col);
             selected=null;
             pTurn=nextTurn();
+            return x;
         }
+        return "Improper move, try again";
     }
     public Piece getPiece(int i, int j){
         return board[i][j];
@@ -87,7 +91,7 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     public boolean isAdjacentToSelected(int row, int col) {
         return (selRow == row && (selCol == col - 1 || selCol == col + 1)) || (selCol == col && (selRow == row - 1 || selRow == row + 1));
     }
-    public void scrimmage(int row, int col) {
+    public String scrimmage(int row, int col) {
         Piece winner = new Piece();
         Piece def = board[row][col];
         int defVal = def.getValue();
@@ -102,9 +106,17 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         }
         if (winner.getValue() == -1) 
             winner.copyPiece(selected.getBigger(def)); 
-        System.out.println("Update to the commanders:\nThe "+def.getValue()+" from the "+def.getElement()+" nation, and the " + selected.getValue()+" from the "+selected.getElement()+" nation fought!!\nThe "+winner.getElement()+" nation has won this battle.");
+        String label= "Update to the commanders:\nThe "+def.getValue()+" from the "+def.getElement()+" nation, and the " + selected.getValue()+" from the "+selected.getElement()+" nation fought!!\nThe "+winner.getElement()+" nation has won this battle.";
+        if(def.getValue()==-1){
+            label="Update to the commanders:\nThe "+selected.getElement()+" nation has moved its piece!";
+        }
+        if(def.getValue()==0){
+            done=true;
+            label=def.getElement()+" nation's flag has been captured! \nThe game is over..."+selected.getElement()+ " nation, you have won. Click the button to restart the game";
+        }
         board[row][col] = winner; 
         board[selRow][selCol].makeVoid();
+        return label;
     }
     public int nextTurn() {
         if (pTurn == 0)
