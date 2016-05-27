@@ -57,6 +57,9 @@ public class Piece {
         owner= -1;//maybe not necessary?
         value= -1;
     }
+    public String getLocation(){
+        return location;
+    }
     
     public String getPath(int nextTurn){
         if(owner==nextTurn)

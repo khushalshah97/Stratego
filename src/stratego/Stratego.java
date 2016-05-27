@@ -77,7 +77,7 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
             selCol = col;
             return "Your piece has been selected, "+selected.getElement()+" nation";
         }
-        else if (selected != null && isAdjacentToSelected(row, col) && board[row][col].getValue() != -2 && !((selected.getValue() == 0) || (selected.getValue() == 11))) {
+        else if (!isSetup && selected != null && isAdjacentToSelected(row, col) && board[row][col].getValue() != -2 && !((selected.getValue() == 0) || (selected.getValue() == 11))) {
             String x= scrimmage(row, col);
             selected=null;
             pTurn=nextTurn();
@@ -138,5 +138,14 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     }
     public void setIsSetup(boolean b) {
         isSetup = b;
+    }
+    public boolean isDone(){
+        return done;
+    }
+    public String getSelectedLocation(){
+        if(selected!=null){
+            return selected.getLocation();
+        }
+        return 
     }
 }

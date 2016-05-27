@@ -25,7 +25,7 @@ import javafx.scene.layout.GridPane;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Label label;
+    private Label label, directions;
     @FXML
     private GridPane gpane;
     @FXML
@@ -34,11 +34,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleSetup(ActionEvent event) {
         if (game.getIsSetup()) {
-            if (game.getTurn() == 0)
+            if (game.getTurn() == 0){
+                label.setText("Fire nation it is now your turn to set up the pieces. Click the two pieces you would like to swap. \nWhen you are done, click the Done button");
                 game.changeTurn();
-            else {
+            }    
+            else{
                 game.changeTurn();
                 game.setIsSetup(false);
+                label.setText("Setup is over.\nWater nation, it is your turn to move. \nSelect the piece you would like to move, and then click the spot you would like to move to ");
+                directions.setText("Select the piece you would like to move, and then click the spot you would like to move to. \nIf you select the same piece again, then you desselect it\nIf an enemy piece is adjacent, then you may attack it\nIf the enemy piece is stronger than yours, then you die, if it is weaker, you take its place.\nIf both pieces are the same strength than they both die.\nYou may not travel across the element restrictions:fire and water");
             }
             setImages();
         }
@@ -49,9 +53,12 @@ public class FXMLDocumentController implements Initializable {
         game.setIsSetup(true);
         gpane.setGridLinesVisible(false);
         gpane.setVisible(false);
-        
+        buttonStart.setVisible(false);
+        buttonSetup.setVisible(true);
+        label.setText("You are in the setup phase.\nWhen it is your turn, click the piece you want to move, and then the piece you would like to swap it with. \nWater nation, it is your turn");
         for(int i=0;i<10;i++){
             for(int j=0;j<10;j++){
+                pieces[i][j]=null;
                 pieces[i][j]=new ImageView();
                 pieces[i][j].setFitHeight(75);
                 pieces[i][j].setFitWidth(75);
@@ -75,9 +82,12 @@ public class FXMLDocumentController implements Initializable {
                 System.out.println("Row: " + row);          
                 setImages();
                 label.setText(game.move(row, column));
+                buttonStart.setText("RESET GAME!");
+                buttonStart.setVisible(true);
                 setImages();
                 pieces[row][column].setFitHeight(50);
-                pieces[row][column].setFitWidth(50);                
+                pieces[row][column].setFitWidth(50);
+                //getSelectedLocation- to make the selected piece smaller when switched
                 
 
                 

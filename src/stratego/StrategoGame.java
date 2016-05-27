@@ -22,8 +22,8 @@ public class StrategoGame extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        //Dimension x =Toolkit.getDefaultToolkit().getScreenSize();
-        Scene scene = new Scene(root);
+        Dimension x =Toolkit.getDefaultToolkit().getScreenSize();
+        Scene scene = new Scene(root, x.width, x.height);
         
         stage.setScene(scene);
         stage.show();
