@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stratego.FXMLDocumentController">
     <children>
-        <Button fx:id="buttonStart" layoutX="863.0" layoutY="38.0" onAction="#handleStart" prefHeight="45.0" prefWidth="151.0" text="ClLICK TO START!!" />
+        <Button fx:id="buttonStart" layoutX="863.0" layoutY="38.0" onAction="#handleStart" prefHeight="45.0" prefWidth="151.0" text="CLICK TO START!!" />
         <Label fx:id="directions" layoutX="1015.0" layoutY="123.0" minHeight="16" minWidth="69" prefHeight="553.0" prefWidth="368.0" wrapText="true">
          <font>
             <Font size="14.0" />
@@ -20,6 +20,6 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button fx:id="buttonSetup" layoutX="878.0" layoutY="81.0" mnemonicParsing="false" onAction="#handleSetup" prefHeight="35.0" prefWidth="70.0" text="Done" visible="false" />
+      <Button fx:id="buttonSetup" layoutX="906.0" layoutY="96.0" mnemonicParsing="false" onAction="#handleSetup" prefHeight="32.0" prefWidth="66.0" text="Done" visible="false" />
     </children>
 </AnchorPane>
