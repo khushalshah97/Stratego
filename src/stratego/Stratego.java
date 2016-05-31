@@ -17,7 +17,7 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
     private boolean isSetup = true;
     private boolean done=false;
     
-    public Stratego() {
+    public Stratego() { //initializes a game of Stratego, setting up the board with all necessary pieces
         int quantity=0;
         int value=0;
         int player=1;
@@ -54,9 +54,9 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
             }
         }        
     }
-    public String move(int row, int col) {
-        if (board[row][col].getOwner() == pTurn){
-            if (isSetup && selected != null) {
+    public String move(int row, int col) { //selects a piece to be moved if none is currently selected and the clicked piece is 
+        if (board[row][col].getOwner() == pTurn){ //able to be moved; otherwise appropriately moves the selected piece to 
+            if (isSetup && selected != null) { //a selected adjecent space; returns a String indicating what took place
                 if (row == selRow && col == selCol) {
                     selected = null;
                     return "Your piece is deselected ";
@@ -85,15 +85,15 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         }
         return "Improper move, try again";
     }
-    public Piece getPiece(int i, int j){
+    public Piece getPiece(int i, int j){ //returns the piece at the given coordinates
         return board[i][j];
     }
-    public boolean isAdjacentToSelected(int row, int col) {
+    public boolean isAdjacentToSelected(int row, int col) { //returns true if the spot at the given coordinates is adjacent to the selected piece; otherwise false
         return (selRow == row && (selCol == col - 1 || selCol == col + 1)) || (selCol == col && (selRow == row - 1 || selRow == row + 1));
     }
-    public String scrimmage(int row, int col) {
-        Piece winner = new Piece();
-        Piece def = board[row][col];
+    public String scrimmage(int row, int col) { //causes the selected piece to battle the piece at the given coordinates; the point where
+        Piece winner = new Piece(); //selected was will be left blank, and the winner will be placed at the given coordinates;
+        Piece def = board[row][col]; //if there was no winner both spots will be blank
         int defVal = def.getValue();
         int attVal = selected.getValue();
         switch (attVal) {
@@ -118,34 +118,34 @@ public class Stratego {//6 bombs 11, 1 10, 1 9, 2 8, 3 7, 4 6, 4 5, 4 4, 5 3, 8 
         board[selRow][selCol].makeVoid();
         return label;
     }
-    public int nextTurn() {
+    public int nextTurn() { //returns the int representing the player whose turn it is NOT
         if (pTurn == 0)
             return 1;
         else 
             return 0;
     }
-    public int getTurn(){
+    public int getTurn(){ //returns the int representing the player whose turn it is
         return pTurn;
     }
-    public void changeTurn() {
+    public void changeTurn() { //changes the turn to the other player
         if (pTurn == 0)
             pTurn = 1;
         else 
             pTurn = 0;
     }
-    public boolean getIsSetup() {
+    public boolean getIsSetup() { //returns true if isSetup is true; that is, the game is currently in the setup phase; oterwise false
         return isSetup;
     }
-    public void setIsSetup(boolean b) {
+    public void setIsSetup(boolean b) { //sets the value of isSetup equal to the given boolean
         isSetup = b;
     }
-    public boolean isDone(){
+    public boolean isDone(){ //returns done, indicating whether the game is finished
         return done;
     }
-    public String getSelectedLocation(){
-        if(selected!=null){
+    public String getSelectedLocation(){ //returns a String indicated the location of the selected piece if one exists; otherwise 
+        if(selected!=null){ //returns an empty String
             return selected.getLocation();
         }
-        return 
+        return "";
     }
 }

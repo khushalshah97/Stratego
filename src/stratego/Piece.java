@@ -27,42 +27,42 @@ public class Piece {
         location= Integer.toString(row)+Integer.toString(column);
         this.element=elements[element];
     }        
-    public Piece(){
+    public Piece(){ //constructs a Piece representing a blank space
         owner = -1;
         value = -1;
     }
-    public Piece(Piece another) {
+    public Piece(Piece another) { //contructs a Piece which is a copy of another Piece
         copyPiece(another);
     }      
-    public void copyPiece(Piece another){
+    public void copyPiece(Piece another){ //sets all fields in this equal to another Piece
         this.owner = another.owner;
         this.value = another.value;
         this.location = another.location;
         this.isFlag = another.isFlag;
         this.element=another.element;
     }
-    public int getOwner(){
+    public int getOwner(){ //returns the owner of the Piece
         return owner;
     }
             
-    public int getValue(){
+    public int getValue(){ //returns the value of the Piece
         return value;
     }
     
-    public String getElement(){
+    public String getElement(){ //returns the element of the Piece, water or fire
         return element;
     }
     
-    public void makeVoid(){
-        owner= -1;//maybe not necessary?
+    public void makeVoid(){ //makes the Piece a blank space
+        owner= -1;
         value= -1;
     }
-    public String getLocation(){
+    public String getLocation(){ //returns the location of the piece
         return location;
     }
     
-    public String getPath(int nextTurn){
-        if(owner==nextTurn)
+    public String getPath(int nextTurn){ //returns the location of the image representing the Piece in resources, which is
+        if(owner==nextTurn) //a "piece back" when not belonging the player whose turn it is
             return "resources/"+colors[owner]+".jpg";
         if(isFlag)
             return "resources/flag"+owner+".png";
@@ -70,7 +70,7 @@ public class Piece {
             return "resources/"+element+".jpg";
         return "resources/"+Integer.toString(value)+".jpg";
     }
-    public Piece getBigger(Piece another) {
+    public Piece getBigger(Piece another) { //returns the Piece with the bigger value, or, if both are the same, a blank space
         if (this.getValue() > another.getValue())
             return this;
         else if (this.getValue() < another.getValue())
